@@ -44,7 +44,6 @@ class InstantPrintPlugin(QObject):
         self.toolButton.setText(self.tr("Instant Print"))
         self.toolButton.setToolTip(self.tr("Instant Print"))
         self.toolButton.setCheckable(True)
-        self.toolAction = self.iface.pluginToolBar().addWidget(self.toolButton)
         self.toolAction = self.iface.addPluginToMenu().addWidget(self.toolButton)    
 
         self.toolButton.toggled.connect(self.__enableTool)
