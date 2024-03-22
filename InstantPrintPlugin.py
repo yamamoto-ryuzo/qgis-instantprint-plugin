@@ -11,7 +11,7 @@
 from qgis.core import Qgis
 from PyQt5.QtCore import QObject, QSettings, QTranslator, QCoreApplication
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QToolButton
+from PyQt5.QtWidgets import QToolButton,QAction
 from qgis.gui import QgisInterface
 import os
 from .InstantPrintTool import InstantPrintTool
@@ -48,6 +48,11 @@ class InstantPrintPlugin(QObject):
 
         self.toolButton.toggled.connect(self.__enableTool)
         self.iface.mapCanvas().mapToolSet.connect(self.__onToolSet)
+
+        self.action = QAction(QIcon(":/plugins/instantprint/icons/icon.png"), self.tr("Instant Print"), self.iface.mainWindow())
+        self.action.setObjectName(self.tr("Instant Print"))
+        self.iface.addToolBarIcon(self.action)
+        self.iface.addPluginToMenu(self.tr("Instant Print"), self.action) 
 
     def unload(self):
         self.tool.setEnabled(False)
